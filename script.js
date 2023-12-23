@@ -9,48 +9,67 @@ function getComputerChoice() {
     }
 }
 
+let playerScore = 0;
+let computerScore = 0;
 
+document.getElementById('computer').innerText = computerScore;
+document.getElementById('player').innerText = playerScore;
 
 function playRound(playerSelection, computerSelection) {
     let noCaseChoice = playerSelection.toLowerCase();
     if (noCaseChoice === 'rock') {
         if (computerSelection === 'paper') {
             results.innerText = "You lose! Paper beats Rock.";
-            return 0;
+            computerScore += 1;
+            document.getElementById('computer').innerText = computerScore;
         } else if (computerSelection === 'scissors') {
             results.innerText = "You win! Rock beats Scissors.";
-            return 1;
+            playerScore += 1;
+            document.getElementById('player').innerText = playerScore;
         } else {
             results.innerText = "Tie game!";
-            return 2;
         }
     } else if (noCaseChoice === 'paper') {
         if (computerSelection === 'scissors') {
             results.innerText = "You lose! Scissors beats Paper.";
-            return 0;
+            computerScore += 1;
+            document.getElementById('computer').innerText = computerScore;
         } else if (computerSelection === 'rock') {
             results.innerText = "You win! Paper beats Rock.";
-            return 1;
+            playerScore += 1;
+            document.getElementById('player').innerText = playerScore;
         } else {
             results.innerText = "Tie game!";
-            return 2;
         }
     } else if (noCaseChoice === 'scissors') {
         if (computerSelection === 'rock') {
             results.innerText = "You lose! Rock beats Scissors.";
-            return 0;
+            computerScore += 1;
+            document.getElementById('computer').innerText = computerScore;
         } else if (computerSelection === 'paper') {
             results.innerText = "You win! Scissors beats Paper.";
-            return 1;
+            playerScore += 1;
+            document.getElementById('player').innerText = playerScore;
         } else {
             results.innerText = "Tie game!";
-            return 2;
         }
-    } else {
-        alert("Error: wrong input. Please enter Rock, Paper, or Scissors");
-        return 0;
+    }
+    if (playerScore === 5) {
+        results.innerText = "You won the game!!!";
+        playerScore = 0;
+        computerScore = 0;
+        document.getElementById('player').innerText = playerScore;
+        document.getElementById('computer').innerText = computerScore;
+    } else if (computerScore === 5) {
+        results.innerText = "You lost the game! :(";
+        playerScore = 0;
+        computerScore = 0;
+        document.getElementById('player').innerText = playerScore;
+        document.getElementById('computer').innerText = computerScore;
     }
 }
+
+
 
 let results = document.querySelector('.results');
 let rock = document.getElementById('rock');
